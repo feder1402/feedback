@@ -1,0 +1,31 @@
+import React from 'react';
+import {cleanup, fireEvent, render} from '@testing-library/react';
+import App from './App';
+import {assert} from 'chai';
+
+test('should show the thanks screen when "Good" is clicked', () => {
+  const {getByText} = render(<App/>);
+
+  // The question screen should be visible at first
+  assert.ok(getByText('How was your experience?'));
+
+  // Click the "Good" button
+  fireEvent.click(getByText('Good'));
+
+  // Now the thanks screen should be visible
+  assert.ok(getByText('Thanks for your feedback.'));
+});
+
+test('should show the form screen when "Bad" is clicked', () => {
+  const {getByText} = render(<App/>);
+
+  // The question screen should be visible at first
+  assert.ok(getByText('How was your experience?'));
+
+  // Click the "Bad" button
+  fireEvent.click(getByText('Bad'));
+
+  // Now the form screen should be visible
+  assert.ok(getByText('Care to tell us why?'));
+});
+
